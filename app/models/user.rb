@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
     validates :username, presence: true, uniqueness: true
     validates :session_token, :password_digest, presence: true
@@ -6,7 +18,7 @@ class User < ApplicationRecord
 
     def self.find_by_cred(username, password)
         user = User.find_by(username: username)
-        if user && user.valid_password(password)
+        if user && user.valid_password?(password)
             user
         else
             nil
@@ -28,7 +40,7 @@ class User < ApplicationRecord
     end
 
     private
-    def valid_password(password)
+    def valid_password?(password)
         BCrypt::Password.new(self.password_digest).is_password?(password)
     end
 end
