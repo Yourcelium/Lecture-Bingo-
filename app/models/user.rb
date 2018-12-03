@@ -25,6 +25,16 @@ class User < ApplicationRecord
         end
     end
 
+    has_many :plays
+
+    has_many :games, through: :plays
+
+    has_many :boards, through: :games, source: :boards
+
+    has_many :created_games,
+        foreign_key: :creator,
+        class_name: :Game
+
 
     def password=(password)
         digest = BCrypt::Password.create(password)
