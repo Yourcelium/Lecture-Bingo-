@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_041319) do
+ActiveRecord::Schema.define(version: 2018_12_04_081317) do
 
   create_table "boards", force: :cascade do |t|
     t.integer "game_id"
@@ -19,14 +19,25 @@ ActiveRecord::Schema.define(version: 2018_12_03_041319) do
     t.index ["game_id"], name: "index_boards_on_game_id"
   end
 
+  create_table "builds", force: :cascade do |t|
+    t.integer "board_id"
+    t.integer "square_id"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "checked", default: false
+    t.index ["board_id", "square_id", "position"], name: "index_builds_on_board_id_and_square_id_and_position", unique: true
+    t.index ["board_id"], name: "index_builds_on_board_id"
+    t.index ["square_id"], name: "index_builds_on_square_id"
+  end
+
   create_table "games", force: :cascade do |t|
     t.integer "theme_id"
     t.integer "winner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "creator"
+    t.integer "creator_id"
     t.index ["theme_id"], name: "index_games_on_theme_id"
-    t.index ["winner_id"], name: "index_games_on_winner_id"
   end
 
   create_table "plays", force: :cascade do |t|
@@ -43,7 +54,6 @@ ActiveRecord::Schema.define(version: 2018_12_03_041319) do
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "checked", default: false
     t.index ["theme_id"], name: "index_squares_on_theme_id"
   end
 

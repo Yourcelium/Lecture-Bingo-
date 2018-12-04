@@ -10,5 +10,8 @@
 
 class Theme < ApplicationRecord
     validates :name, presence: true
+    
     has_many :games
+
+    has_many :squares
 end

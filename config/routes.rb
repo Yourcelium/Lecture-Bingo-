@@ -5,4 +5,10 @@ Rails.application.routes.draw do
   resources :games, only: [:create, :update, :destroy]
 
   resource :session, only: [:create, :destroy]
+
+  resources :builds, only: [:update]
+
+  resources :boards, only: [:create]
+
+  resources :squares, only: [:create]
 end

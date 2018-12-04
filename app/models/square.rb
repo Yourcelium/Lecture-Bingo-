@@ -11,9 +11,13 @@
 
 class Square < ApplicationRecord
     validates :text, presence: true
+    
     belongs_to :theme
 
     has_many :games, through: :theme
 
+    has_many :builds
+
+    has_many :boards, through: :builds
     
 end

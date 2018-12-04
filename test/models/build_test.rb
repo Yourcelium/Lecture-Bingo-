@@ -1,18 +1,19 @@
 # == Schema Information
 #
-# Table name: games
+# Table name: builds
 #
 #  id         :integer          not null, primary key
-#  theme_id   :integer
-#  winner_id  :integer
+#  board_id   :integer
+#  square_id  :integer
+#  position   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  creator_id :integer
+#  checked    :boolean          default(FALSE)
 #
 
 require 'test_helper'
 
-class GameTest < ActiveSupport::TestCase
+class BuildTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

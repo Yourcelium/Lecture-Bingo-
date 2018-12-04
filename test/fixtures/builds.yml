@@ -3,10 +3,12 @@
 # Table name: builds
 #
 #  id         :integer          not null, primary key
-#  square_id  :integer
 #  board_id   :integer
+#  square_id  :integer
+#  position   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  checked    :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
